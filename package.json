@@ -1,0 +1,22 @@
+{
+  "name": "carpraze-appraisal-form",
+  "version": "1.0.0",
+  "description": "carpraze-appraisal-form",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saynadim/carpraze-appraisal-form.git"
+  },
+  "keywords": [
+    "carpraze"
+  ],
+  "author": "Nadim Tuhin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saynadim/carpraze-appraisal-form/issues"
+  },
+  "homepage": "https://github.com/saynadim/carpraze-appraisal-form#readme"
+}
