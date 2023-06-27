@@ -112,10 +112,10 @@ var carpraze_contact_form = (function () {
             </div>
             <div class="cp-modal-form">
                 <form id="cp-appraisal-form" method="post">
-                    <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
-                    <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
-                    <input type="email" id="email" name="email" placeholder="Email" required>
-                    <input type="text" id="phone" name="phone" placeholder="Phone" required>
+                    <input type="text" id="cp_first_name" name="cp_first_name" placeholder="First Name" required>
+                    <input type="text" id="cp_last_name" name="cp_last_name" placeholder="Last Name" required>
+                    <input type="email" id="cp_email" name="cp_email" placeholder="Email" required>
+                    <input type="text" id="cp_phone" name="cp_phone" placeholder="Phone" required>
                     <input type="submit" value="Submit">
                 </form>
             </div>
@@ -161,10 +161,10 @@ var carpraze_contact_form = (function () {
         form.parentNode.insertBefore(successMessage, form.nextSibling);
 
         // Clear form fields
-        document.getElementById('first_name').value = '';
-        document.getElementById('last_name').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('phone').value = '';
+        document.getElementById('cp_first_name').value = '';
+        document.getElementById('cp_last_name').value = '';
+        document.getElementById('cp_email').value = '';
+        document.getElementById('cp_phone').value = '';
 
         // Close the modal after 3 seconds
         setTimeout(function () {
@@ -176,10 +176,10 @@ var carpraze_contact_form = (function () {
         event.preventDefault();
         var url = 'https://app.carpraze.com/api/v1/iframe/customer/input';
 
-        var first_name = document.getElementById('first_name').value;
-        var last_name = document.getElementById('last_name').value;
-        var email = document.getElementById('email').value;
-        var phone = document.getElementById('phone').value;
+        var first_name = document.getElementById('cp_first_name').value;
+        var last_name = document.getElementById('cp_last_name').value;
+        var email = document.getElementById('cp_email').value;
+        var phone = document.getElementById('cp_phone').value;
 
         // Send form data to the server
         var xhr = new XMLHttpRequest();
