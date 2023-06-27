@@ -95,17 +95,6 @@ var carpraze_contact_form = (function () {
         height: 40px;
     }
     `;
-
-    // Create a <style> element
-    var style = document.createElement('style');
-    style.textContent = css;
-    document.head.appendChild(style);
-
-    // Create the widget container
-    var widgetContainer = document.createElement('div');
-    widgetContainer.id = 'widget-container';
-    document.body.appendChild(widgetContainer);
-
     // Define the HTML for the form
     var html = `
     <div class="cp-modal" id="cp-appraisal-modal">
@@ -115,7 +104,11 @@ var carpraze_contact_form = (function () {
                 <h2>Find out what your trade in is worth</h2>
             </div>
             <div class="cp-modal-description">
-                <p>Fill out the form below and receive a Firm Offer from a Real Person (Not a computer-generated estimate).  Once your input your information, you will receive a text message and e-mail.  To get started you will need important information about your vehicle.</p>
+                <p>
+                Fill out the form below and receive a Firm Offer from a Real Person (Not a computer-generated estimate).  
+                Once your input your information, you will receive a text message and e-mail.  
+                <strong>To get started you will need important information about your vehicle.</strong>
+                </p>
             </div>
             <div class="cp-modal-form">
                 <form id="cp-appraisal-form" method="post">
@@ -135,7 +128,16 @@ var carpraze_contact_form = (function () {
     </div>
     `;
 
+    // Create a <style> element
+    var style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+
+    // Create the widget container
+    var widgetContainer = document.createElement('div');
+    widgetContainer.id = 'widget-container';
     widgetContainer.innerHTML = html;
+    document.body.appendChild(widgetContainer);
 
     function handleFormOnload() {
         if (!(this.status === 200 || this.status === 201)) {
@@ -170,12 +172,10 @@ var carpraze_contact_form = (function () {
         }, 3000);
     }
 
-    var url = 'https://app.carpraze.com/api/v1/iframe/customer/input';
-
     function handleFormSubmission(event) {
         event.preventDefault();
+        var url = 'https://app.carpraze.com/api/v1/iframe/customer/input';
 
-        // Perform form validation
         var first_name = document.getElementById('first_name').value;
         var last_name = document.getElementById('last_name').value;
         var email = document.getElementById('email').value;
@@ -193,6 +193,7 @@ var carpraze_contact_form = (function () {
         data.append('email', email);
         data.append('phone', phone);
         data.append('form_type', 'customerInput');
+
         xhr.send(data);
     }
 
@@ -201,9 +202,10 @@ var carpraze_contact_form = (function () {
         modal.classList.toggle("cp-show-modal");
     }
 
-
-    // Attach event listeners for form submission and modal toggling
-    document.querySelector(window.carprazeForm.selector).addEventListener('click', toggleModal);
-    document.querySelector('.cp-close-button').addEventListener('click', toggleModal);
-    document.getElementById('cp-appraisal-form').addEventListener('submit', handleFormSubmission);
+    document.addEventListener('DOMContentLoaded', function () {
+        // Attach event listeners for form submission and modal toggling
+        document.querySelector(window.carprazeForm.selector).addEventListener('click', toggleModal);
+        document.querySelector('.cp-close-button').addEventListener('click', toggleModal);
+        document.getElementById('cp-appraisal-form').addEventListener('submit', handleFormSubmission);
+    });
 })();
