@@ -21,10 +21,15 @@ var carpraze_contact_form = (function () {
         transform: translate(-50%, -50%);
         background-color: white;
         padding: 1rem 1.5rem;
-        width: 24rem;
+        width: 40rem;
         border-radius: 0.5rem;
     }
     
+    .cp-modal-body {
+        overflow: auto;
+        max-height: calc(100vh - 200px);
+    }
+
     .cp-close-button {
         float: right;
         width: 1.5rem;
@@ -103,21 +108,25 @@ var carpraze_contact_form = (function () {
             <div class="cp-modal-header">
                 <h2>Find out what your trade in is worth</h2>
             </div>
-            <div class="cp-modal-description">
-                <p>
-                Fill out the form below and receive a Firm Offer from a Real Person (Not a computer-generated estimate).  
-                Once your input your information, you will receive a text message and e-mail.  
-                <strong>To get started you will need important information about your vehicle.</strong>
-                </p>
-            </div>
-            <div class="cp-modal-form">
-                <form id="cp-appraisal-form" method="post">
-                    <input type="text" id="cp_first_name" name="cp_first_name" placeholder="First Name" required>
-                    <input type="text" id="cp_last_name" name="cp_last_name" placeholder="Last Name" required>
-                    <input type="email" id="cp_email" name="cp_email" placeholder="Email" required>
-                    <input type="text" id="cp_phone" name="cp_phone" placeholder="Phone" required>
-                    <input type="submit" value="Submit">
-                </form>
+            <div class="cp-modal-body">
+                <div class="cp-modal-description">
+                    <p>
+                    Fill out the form below and receive a Firm Offer from a Real Person (Not a computer-generated estimate).  
+                    Once your input your information, you will receive a text message and e-mail.
+                    </p>
+                    <p>
+                    <strong>To get started you will need important information about your vehicle.</strong>
+                    </p>
+                </div>
+                <div class="cp-modal-form">
+                    <form id="cp-appraisal-form" method="post">
+                        <input type="text" id="cp_first_name" name="cp_first_name" placeholder="First Name" required>
+                        <input type="text" id="cp_last_name" name="cp_last_name" placeholder="Last Name" required>
+                        <input type="email" id="cp_email" name="cp_email" placeholder="Email" required>
+                        <input type="text" id="cp_phone" name="cp_phone" placeholder="Phone" required>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
             </div>
             <div class="cp-modal-footer">
                 <p>
@@ -135,7 +144,7 @@ var carpraze_contact_form = (function () {
 
     // Create the widget container
     var widgetContainer = document.createElement('div');
-    widgetContainer.id = 'widget-container';
+    widgetContainer.id = 'cp-widget-container';
     widgetContainer.innerHTML = html;
     document.body.appendChild(widgetContainer);
 
