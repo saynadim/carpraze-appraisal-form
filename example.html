@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>carpraze appraisal plugin example</title>
+</head>
+<body>
+<h1>carpraze appraisal plugin example</h1>
+<!-- Any button or link to be pressed -->
+<a class="appraisal-button cp-appraisal-btn" href="#carpraze-appraisal">appraisal</a>
+
+
+<!-- plugin code here -->
+<script>
+    var carprazeForm = {
+        token: 'zf6zku7gbd6zzfw3rhter0cmeafj68kcb',
+        selector: '.cp-appraisal-btn',
+    };
+</script>
+<script src="appraisal-form.js"></script>
+<!-- plugin code ends -->
+
+<!-- self open the modal test purpose -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // self open the modal
+        // if querystring?open=1
+        if (window.location.search.indexOf('open=1') > -1) {
+            document.querySelector(window.carprazeForm.selector).click();
+        }
+    });
+</script>
+<!-- self open the modal test purpose ends -->
+
+</body>
+</html>
