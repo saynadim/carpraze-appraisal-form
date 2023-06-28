@@ -10,7 +10,9 @@ var carpraze_contact_form = (function () {
         background-color: rgba(0, 0, 0, 0.5);
         opacity: 0;
         visibility: hidden;
+        -webkit-transform: scale(1.1);
         transform: scale(1.1);
+        -webkit-transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
         transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
     }
     
@@ -18,6 +20,7 @@ var carpraze_contact_form = (function () {
         position: absolute;
         top: 50%;
         left: 50%;
+        -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         background-color: white;
         padding: 1rem 1.5rem;
@@ -29,7 +32,7 @@ var carpraze_contact_form = (function () {
         overflow: auto;
         max-height: calc(100vh - 200px);
     }
-
+    
     .cp-close-button {
         float: right;
         width: 1.5rem;
@@ -47,22 +50,25 @@ var carpraze_contact_form = (function () {
     .cp-show-modal {
         opacity: 1;
         visibility: visible;
+        -webkit-transform: scale(1.0);
         transform: scale(1.0);
+        -webkit-transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
         transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
     }
-
+    
     /* form styling */
     #cp-appraisal-form {
+        display: -ms-grid;
         display: grid;
         gap: 1em;
         margin: auto;
     }
-
+    
     #cp-appraisal-form label {
         font-size: 1.1em;
         font-weight: bold;
     }
-
+    
     #cp-appraisal-form input[type=text],
     #cp-appraisal-form input[type=email] {
         padding: 0.5em;
@@ -70,7 +76,7 @@ var carpraze_contact_form = (function () {
         border-radius: 4px;
         font-size: 1em;
     }
-
+    
     #cp-appraisal-form input[type=submit] {
         cursor: pointer;
         background-color: #4CAF50; /* green */
@@ -82,11 +88,12 @@ var carpraze_contact_form = (function () {
         display: inline-block;
         font-size: 16px;
         margin: 4px 2px;
+        -webkit-transition-duration: 0.4s;
         transition-duration: 0.4s;
         cursor: pointer;
         border-radius: 4px;
     }
-
+    
     #cp-appraisal-form input[type=submit]:hover {
         background-color: #45a049;
     }
