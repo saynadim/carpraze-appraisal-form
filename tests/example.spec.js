@@ -30,6 +30,6 @@ test('should submit form and display success message', async ({page }) => {
     // You may need to adjust this wait time
     await page.waitForTimeout(3000);
 
-    const successMessage = await page.$('div[innerText="Your request was successfully submitted!"]');
+    const successMessage = await page.$('div.cp-success-message');
     expect(successMessage).toBeTruthy();
 });

@@ -165,6 +165,7 @@ var carpraze_contact_form = (function () {
         var response = JSON.parse(this.responseText);
         // Create a success message element
         var successMessage = document.createElement("div");
+        successMessage.classList.add("cp-success-message");
         successMessage.innerText = "Your request was successfully submitted!";
         successMessage.style.color = "green";
         successMessage.style.padding = "15px";
