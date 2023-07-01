@@ -11,5 +11,5 @@ place the following code in your html file
         selector: '.cp-appraisal-btn',
     };
 </script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/saynadim/carpraze-appraisal-form@1.0.5/appraisal-form.js"> </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/saynadim/carpraze-appraisal-form@1.1/appraisal-form.js"> </script>
 ```
