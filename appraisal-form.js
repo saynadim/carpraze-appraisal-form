@@ -49,6 +49,7 @@ var carpraze_contact_form = (function () {
     
     .cp-show-modal {
         opacity: 1;
+        z-index: 999999;
         visibility: visible;
         -webkit-transform: scale(1.0);
         transform: scale(1.0);
@@ -214,6 +215,30 @@ var carpraze_contact_form = (function () {
         xhr.send(data);
     }
 
+    function handleClickOutsideModal(event) {
+        // Check if the click event happened on the modal overlay (background)
+        if (event.target.id === 'cp-appraisal-modal') {
+            var form = document.getElementById('cp-appraisal-form');
+
+            // Get all input fields in the form
+            var inputs = form.querySelectorAll('input[type=text], input[type=email]');
+
+            // Check if any input fields have been filled out
+            var isAnyFieldFilled = Array.from(inputs).some(input => input.value !== '');
+
+            // If at least one input field has been filled out, ask for confirmation
+            if (isAnyFieldFilled) {
+                // If the user confirms they want to close the modal, close it
+                if (confirm('Are you sure you want to close the form? Your request is not complete yet.')) {
+                    toggleModal();
+                }
+            } else {
+                // If no input fields have been filled out, close the modal without asking for confirmation
+                toggleModal();
+            }
+        }
+    }
+
     function toggleModal() {
         var modal = document.getElementById('cp-appraisal-modal');
         modal.classList.toggle("cp-show-modal");
@@ -224,5 +249,8 @@ var carpraze_contact_form = (function () {
         document.querySelector(window.carprazeForm.selector).addEventListener('click', toggleModal);
         document.querySelector('.cp-close-button').addEventListener('click', toggleModal);
         document.getElementById('cp-appraisal-form').addEventListener('submit', handleFormSubmission);
+
+        // Listen for click events on the modal overlay (background)
+        document.getElementById('cp-appraisal-modal').addEventListener('click', handleClickOutsideModal);
     });
 })();
