@@ -1,11 +1,31 @@
-// version: 1.5
-// last updated: 28/07/2023
+// version: 1.6
+// last updated: 29/07/2023
 var carpraze_contact_form = (function () {
-    if (!window.carprazeForm) {
-        throw new Error('window.carprazeForm object not found. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
+    var carprazeForm = window.carprazeForm
+    if (!carprazeForm) {
+        const tokenMeta = document.querySelector('meta[name="carprazeForm:token"]');
+        const selectorMeta = document.querySelector('meta[name="carprazeForm:selector"]');
+        if (!tokenMeta) {
+            throw new Error('carprazeForm:token meta is required');
+        } else if (!selectorMeta) {
+            throw new Error('carprazeForm:selector meta is required');
+        }
+        carprazeForm = {
+            token: tokenMeta.getAttribute('content'),
+            selector: selectorMeta.getAttribute('content')
+        };
+    } else {
+        if (!carprazeForm.token) {
+            throw new Error('carprazeForm.token is required');
+        } else if (!carprazeForm.selector) {
+            throw new Error('carprazeForm.selector is required');
+        }
     }
-    var token = window.carprazeForm.token;
-    var selector = window.carprazeForm.selector || '.cp-appraisal-btn';
+
+
+    var token = carprazeForm.token;
+    var selector = carprazeForm.selector;
+
     // Define the CSS
     var css = `
     .cp-modal {
