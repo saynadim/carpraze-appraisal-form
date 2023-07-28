@@ -7,9 +7,9 @@ var carpraze_contact_form = (function () {
             const tokenMeta = document.querySelector('meta[name="carprazeForm:token"]');
             const selectorMeta = document.querySelector('meta[name="carprazeForm:selector"]');
             if (!tokenMeta) {
-                throw new Error('carprazeForm:token meta is required');
+                throw new Error('carprazeForm:token meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
             } else if (!selectorMeta) {
-                throw new Error('carprazeForm:selector meta is required');
+                throw new Error('carprazeForm:selector meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
             }
             carprazeForm = {
                 token: tokenMeta.getAttribute('content'),
@@ -17,9 +17,9 @@ var carpraze_contact_form = (function () {
             };
         } else {
             if (!carprazeForm.token) {
-                throw new Error('carprazeForm.token is required');
+                throw new Error('carprazeForm.token is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
             } else if (!carprazeForm.selector) {
-                throw new Error('carprazeForm.selector is required');
+                throw new Error('carprazeForm.selector is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
             }
         }
 
