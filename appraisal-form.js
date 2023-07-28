@@ -1,4 +1,4 @@
-// version: 1.4
+// version: 1.5
 // last updated: 28/07/2023
 var carpraze_contact_form = (function () {
     if (!window.carprazeForm) {
@@ -126,7 +126,7 @@ var carpraze_contact_form = (function () {
     var html = `
     <div class="cp-modal" id="cp-appraisal-modal">
         <div class="cp-modal-content">
-            <span class="cp-close-button">×</span>
+            <span class="cp-close-button">x</span>
             <div class="cp-modal-header">
                 <h2>Find out what your trade in is worth</h2>
             </div>
