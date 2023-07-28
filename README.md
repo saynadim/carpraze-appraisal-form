@@ -7,7 +7,7 @@ place the following code in your html file
 <a class="appraisal-button cp-appraisal-btn" href="#carpraze-appraisal">appraisal</a>
 <script>
     var carprazeForm = {
-        token: 'zf6zku7gbd6zzfw3rhter0cmeafj68kcb',
+        token: 'YOUR_TOKEN_HERE',
         selector: '.cp-appraisal-btn',
     };
 </script>
