@@ -1,33 +1,34 @@
-// version: 1.6
+// version: 1.7
 // last updated: 29/07/2023
 var carpraze_contact_form = (function () {
-    var carprazeForm = window.carprazeForm
-    if (!carprazeForm) {
-        const tokenMeta = document.querySelector('meta[name="carprazeForm:token"]');
-        const selectorMeta = document.querySelector('meta[name="carprazeForm:selector"]');
-        if (!tokenMeta) {
-            throw new Error('carprazeForm:token meta is required');
-        } else if (!selectorMeta) {
-            throw new Error('carprazeForm:selector meta is required');
+    function initContactForm() {
+        var carprazeForm = window.carprazeForm
+        if (!carprazeForm) {
+            const tokenMeta = document.querySelector('meta[name="carprazeForm:token"]');
+            const selectorMeta = document.querySelector('meta[name="carprazeForm:selector"]');
+            if (!tokenMeta) {
+                throw new Error('carprazeForm:token meta is required');
+            } else if (!selectorMeta) {
+                throw new Error('carprazeForm:selector meta is required');
+            }
+            carprazeForm = {
+                token: tokenMeta.getAttribute('content'),
+                selector: selectorMeta.getAttribute('content')
+            };
+        } else {
+            if (!carprazeForm.token) {
+                throw new Error('carprazeForm.token is required');
+            } else if (!carprazeForm.selector) {
+                throw new Error('carprazeForm.selector is required');
+            }
         }
-        carprazeForm = {
-            token: tokenMeta.getAttribute('content'),
-            selector: selectorMeta.getAttribute('content')
-        };
-    } else {
-        if (!carprazeForm.token) {
-            throw new Error('carprazeForm.token is required');
-        } else if (!carprazeForm.selector) {
-            throw new Error('carprazeForm.selector is required');
-        }
-    }
 
 
-    var token = carprazeForm.token;
-    var selector = carprazeForm.selector;
+        var token = carprazeForm.token;
+        var selector = carprazeForm.selector;
 
-    // Define the CSS
-    var css = `
+        // Define the CSS
+        var css = `
     .cp-modal {
         position: fixed;
         left: 0;
@@ -142,8 +143,8 @@ var carpraze_contact_form = (function () {
         height: 40px;
     }
     `;
-    // Define the HTML for the form
-    var html = `
+        // Define the HTML for the form
+        var html = `
     <div class="cp-modal" id="cp-appraisal-modal">
         <div class="cp-modal-content">
             <span class="cp-close-button">x</span>
@@ -176,106 +177,105 @@ var carpraze_contact_form = (function () {
     </div>
     `;
 
-    // Create a <style> element
-    var style = document.createElement('style');
-    style.textContent = css;
-    document.head.appendChild(style);
+        // Create a <style> element
+        var style = document.createElement('style');
+        style.textContent = css;
+        document.head.appendChild(style);
 
-    // Create the widget container
-    var widgetContainer = document.createElement('div');
-    widgetContainer.id = 'cp-widget-container';
-    widgetContainer.innerHTML = html;
-    document.body.appendChild(widgetContainer);
+        // Create the widget container
+        var widgetContainer = document.createElement('div');
+        widgetContainer.id = 'cp-widget-container';
+        widgetContainer.innerHTML = html;
+        document.body.appendChild(widgetContainer);
 
-    function handleFormOnload() {
-        if (!(this.status === 200 || this.status === 201)) {
-            console.error("There was an error with the request.");
-            alert("There was an error with the request.")
-            return;
+        function handleFormOnload() {
+            if (!(this.status === 200 || this.status === 201)) {
+                console.error("There was an error with the request.");
+                alert("There was an error with the request.")
+                return;
+            }
+
+            var response = JSON.parse(this.responseText);
+            // Create a success message element
+            var successMessage = document.createElement("div");
+            successMessage.classList.add("cp-success-message");
+            successMessage.innerText = "Your request was successfully submitted!";
+            successMessage.style.color = "green";
+            successMessage.style.padding = "15px";
+            successMessage.style.margin = "10px 0";
+            successMessage.style.border = "1px solid green";
+            successMessage.style.borderRadius = "5px";
+
+            // Get the form and insert the success message after it
+            var form = document.getElementById("cp-appraisal-form");
+            form.parentNode.insertBefore(successMessage, form.nextSibling);
+
+            // Clear form fields
+            document.getElementById('cp_first_name').value = '';
+            document.getElementById('cp_last_name').value = '';
+            document.getElementById('cp_email').value = '';
+            document.getElementById('cp_phone').value = '';
+
+            // Close the modal after 3 seconds
+            setTimeout(function () {
+                toggleModal();
+            }, 3000);
         }
 
-        var response = JSON.parse(this.responseText);
-        // Create a success message element
-        var successMessage = document.createElement("div");
-        successMessage.classList.add("cp-success-message");
-        successMessage.innerText = "Your request was successfully submitted!";
-        successMessage.style.color = "green";
-        successMessage.style.padding = "15px";
-        successMessage.style.margin = "10px 0";
-        successMessage.style.border = "1px solid green";
-        successMessage.style.borderRadius = "5px";
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            var url = 'https://app.carpraze.com/api/v1/iframe/customer/input';
 
-        // Get the form and insert the success message after it
-        var form = document.getElementById("cp-appraisal-form");
-        form.parentNode.insertBefore(successMessage, form.nextSibling);
+            var first_name = document.getElementById('cp_first_name').value;
+            var last_name = document.getElementById('cp_last_name').value;
+            var email = document.getElementById('cp_email').value;
+            var phone = document.getElementById('cp_phone').value;
 
-        // Clear form fields
-        document.getElementById('cp_first_name').value = '';
-        document.getElementById('cp_last_name').value = '';
-        document.getElementById('cp_email').value = '';
-        document.getElementById('cp_phone').value = '';
+            // Send form data to the server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.onload = handleFormOnload;
 
-        // Close the modal after 3 seconds
-        setTimeout(function () {
-            toggleModal();
-        }, 3000);
-    }
+            var data = new FormData();
+            data.append('token', token);
+            data.append('first_name', first_name);
+            data.append('last_name', last_name);
+            data.append('email', email);
+            data.append('phone', phone);
+            data.append('form_type', 'customerInput');
 
-    function handleFormSubmission(event) {
-        event.preventDefault();
-        var url = 'https://app.carpraze.com/api/v1/iframe/customer/input';
+            xhr.send(data);
+        }
 
-        var first_name = document.getElementById('cp_first_name').value;
-        var last_name = document.getElementById('cp_last_name').value;
-        var email = document.getElementById('cp_email').value;
-        var phone = document.getElementById('cp_phone').value;
+        function handleClickOutsideModal(event) {
+            // Check if the click event happened on the modal overlay (background)
+            if (event.target.id === 'cp-appraisal-modal') {
+                var form = document.getElementById('cp-appraisal-form');
 
-        // Send form data to the server
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', url, true);
-        xhr.onload = handleFormOnload;
+                // Get all input fields in the form
+                var inputs = form.querySelectorAll('input[type=text], input[type=email]');
 
-        var data = new FormData();
-        data.append('token', token);
-        data.append('first_name', first_name);
-        data.append('last_name', last_name);
-        data.append('email', email);
-        data.append('phone', phone);
-        data.append('form_type', 'customerInput');
+                // Check if any input fields have been filled out
+                var isAnyFieldFilled = Array.from(inputs).some(input => input.value !== '');
 
-        xhr.send(data);
-    }
-
-    function handleClickOutsideModal(event) {
-        // Check if the click event happened on the modal overlay (background)
-        if (event.target.id === 'cp-appraisal-modal') {
-            var form = document.getElementById('cp-appraisal-form');
-
-            // Get all input fields in the form
-            var inputs = form.querySelectorAll('input[type=text], input[type=email]');
-
-            // Check if any input fields have been filled out
-            var isAnyFieldFilled = Array.from(inputs).some(input => input.value !== '');
-
-            // If at least one input field has been filled out, ask for confirmation
-            if (isAnyFieldFilled) {
-                // If the user confirms they want to close the modal, close it
-                if (confirm('Are you sure you want to close the form? Your request is not complete yet.')) {
+                // If at least one input field has been filled out, ask for confirmation
+                if (isAnyFieldFilled) {
+                    // If the user confirms they want to close the modal, close it
+                    if (confirm('Are you sure you want to close the form? Your request is not complete yet.')) {
+                        toggleModal();
+                    }
+                } else {
+                    // If no input fields have been filled out, close the modal without asking for confirmation
                     toggleModal();
                 }
-            } else {
-                // If no input fields have been filled out, close the modal without asking for confirmation
-                toggleModal();
             }
         }
-    }
 
-    function toggleModal() {
-        var modal = document.getElementById('cp-appraisal-modal');
-        modal.classList.toggle("cp-show-modal");
-    }
+        function toggleModal() {
+            var modal = document.getElementById('cp-appraisal-modal');
+            modal.classList.toggle("cp-show-modal");
+        }
 
-    document.addEventListener('DOMContentLoaded', function () {
         // Attach event listeners for form submission and modal toggling
         document.querySelector(selector).addEventListener('click', toggleModal);
         document.querySelector('.cp-close-button').addEventListener('click', toggleModal);
@@ -283,5 +283,7 @@ var carpraze_contact_form = (function () {
 
         // Listen for click events on the modal overlay (background)
         document.getElementById('cp-appraisal-modal').addEventListener('click', handleClickOutsideModal);
-    });
+    }
+
+    document.addEventListener('DOMContentLoaded', initContactForm);
 })();
