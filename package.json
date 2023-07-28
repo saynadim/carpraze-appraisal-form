@@ -4,7 +4,9 @@
   "description": "carpraze-appraisal-form",
   "main": "appraisal-form.js",
   "scripts": {
-    "start": "serve ."
+    "start": "serve .",
+    "test": "playwright test",
+    "test:debug": "playwright test"
   },
   "repository": {
     "type": "git",
