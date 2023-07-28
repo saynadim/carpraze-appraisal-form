@@ -128,11 +128,8 @@ var carpraze_contact_form = (function () {
             <div class="cp-modal-body">
                 <div class="cp-modal-description">
                     <p>
-                    Fill out the form below and receive a Firm Offer from a Real Person (Not a computer-generated estimate).  
-                    Once your input your information, you will receive a text message and e-mail.
-                    </p>
-                    <p>
-                    <strong>To get started you will need important information about your vehicle.</strong>
+                    Fill out the form below and receive an Offer from a Real Person (Not a computer-generated estimate). 
+                    Once you input your information, you will receive a text message and e-mail
                     </p>
                 </div>
                 <div class="cp-modal-form">
