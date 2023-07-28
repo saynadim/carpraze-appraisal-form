@@ -15,6 +15,13 @@ var carpraze_contact_form = (function () {
         -webkit-transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
         transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
     }
+
+    /* Additional styling for h2 element */
+    .cp-modal h2 {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 1em;
+    }
     
     .cp-modal-content {
         position: absolute;
