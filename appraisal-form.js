@@ -1,6 +1,9 @@
 // version: 1.3
 // last updated: 28/07/2023
 var carpraze_contact_form = (function () {
+    if (!window.carprazeForm) {
+        throw new Error('window.carprazeForm object not found. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
+    }
     var token = window.carprazeForm.token;
     var selector = window.carprazeForm.selector || '.cp-appraisal-btn';
     // Define the CSS
