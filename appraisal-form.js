@@ -1,6 +1,8 @@
-// version: 1.2
+// version: 1.3
 // last updated: 28/07/2023
 var carpraze_contact_form = (function () {
+    var token = window.carprazeForm.token;
+    var selector = window.carprazeForm.selector || '.cp-appraisal-btn';
     // Define the CSS
     var css = `
     .cp-modal {
@@ -211,7 +213,7 @@ var carpraze_contact_form = (function () {
         xhr.onload = handleFormOnload;
 
         var data = new FormData();
-        data.append('token', window.carprazeForm.token);
+        data.append('token', token);
         data.append('first_name', first_name);
         data.append('last_name', last_name);
         data.append('email', email);
@@ -252,7 +254,7 @@ var carpraze_contact_form = (function () {
 
     document.addEventListener('DOMContentLoaded', function () {
         // Attach event listeners for form submission and modal toggling
-        document.querySelector(window.carprazeForm.selector).addEventListener('click', toggleModal);
+        document.querySelector(selector).addEventListener('click', toggleModal);
         document.querySelector('.cp-close-button').addEventListener('click', toggleModal);
         document.getElementById('cp-appraisal-form').addEventListener('submit', handleFormSubmission);
 
