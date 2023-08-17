@@ -1,34 +1,27 @@
 // version: 1.7
 // last updated: 29/07/2023
 var carpraze_contact_form = (function () {
-    function initContactForm() {
-        var carprazeForm = window.carprazeForm
-        if (!carprazeForm) {
-            const tokenMeta = document.querySelector('meta[name="carprazeForm:token"]');
-            const selectorMeta = document.querySelector('meta[name="carprazeForm:selector"]');
-            if (!tokenMeta) {
-                throw new Error('carprazeForm:token meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
-            } else if (!selectorMeta) {
-                throw new Error('carprazeForm:selector meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
-            }
-            carprazeForm = {
-                token: tokenMeta.getAttribute('content'),
-                selector: selectorMeta.getAttribute('content')
-            };
+
+    // utility functions
+    function onReady(callbackFunc) {
+        if (document.readyState === 'loading') {
+            // Document is still loading, use DOMContentLoaded event
+            document.addEventListener('DOMContentLoaded', callbackFunc);
         } else {
-            if (!carprazeForm.token) {
-                throw new Error('carprazeForm.token is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
-            } else if (!carprazeForm.selector) {
-                throw new Error('carprazeForm.selector is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
-            }
+            // Document is already loaded, call the callback directly
+            callbackFunc();
         }
+    }
+
+    // Define error messages
+    var tokenError = new Error('carprazeForm:token meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
+    var selectorError = new Error('carprazeForm:selector meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
+    var tokenRequiredError = new Error('carprazeForm.token is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
+    var selectorRequiredError = new Error('carprazeForm.selector is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
 
 
-        var token = carprazeForm.token;
-        var selector = carprazeForm.selector;
-
-        // Define the CSS
-        var css = `
+    // Define the CSS
+    var css = `
     .cp-modal {
         position: fixed;
         left: 0;
@@ -162,8 +155,8 @@ var carpraze_contact_form = (function () {
         }
     }
     `;
-        // Define the HTML for the form
-        var html = `
+    // Define the HTML for the form
+    var html = `
     <div class="cp-modal" id="cp-appraisal-modal">
         <div class="cp-modal-content">
             <span class="cp-close-button">x</span>
@@ -195,6 +188,32 @@ var carpraze_contact_form = (function () {
         </div>
     </div>
     `;
+
+    function initContactForm() {
+        var carprazeForm = window.carprazeForm
+        if (!carprazeForm) {
+            const tokenMeta = document.querySelector('meta[name="carprazeForm:token"]');
+            const selectorMeta = document.querySelector('meta[name="carprazeForm:selector"]');
+            if (!tokenMeta) {
+                throw new Error(tokenError);
+            } else if (!selectorMeta) {
+                throw new Error(selectorError);
+            }
+            carprazeForm = {
+                token: tokenMeta.getAttribute('content'),
+                selector: selectorMeta.getAttribute('content')
+            };
+        } else {
+            if (!carprazeForm.token) {
+                throw new Error(tokenError);
+            } else if (!carprazeForm.selector) {
+                throw new Error(selectorError);
+            }
+        }
+
+
+        var token = carprazeForm.token;
+        var selector = carprazeForm.selector;
 
         // Create a <style> element
         var style = document.createElement('style');
@@ -236,9 +255,7 @@ var carpraze_contact_form = (function () {
             document.getElementById('cp_phone').value = '';
 
             // Close the modal after 3 seconds
-            setTimeout(function () {
-                toggleModal();
-            }, 3000);
+            setTimeout(toggleModal, 3000);
         }
 
         function handleFormSubmission(event) {
@@ -302,7 +319,8 @@ var carpraze_contact_form = (function () {
 
         // Listen for click events on the modal overlay (background)
         document.getElementById('cp-appraisal-modal').addEventListener('click', handleClickOutsideModal);
+        document.dispatchEvent(new Event('carprazeAppraisalForm:loaded'));
     }
 
-    document.addEventListener('DOMContentLoaded', initContactForm);
+    onReady(initContactForm);
 })();
