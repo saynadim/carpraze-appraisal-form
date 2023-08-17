@@ -1,5 +1,5 @@
-// version: 1.7
-// last updated: 29/07/2023
+// version: 1.8
+// last updated: 17/08/2023
 var carpraze_contact_form = (function () {
 
     // utility functions
