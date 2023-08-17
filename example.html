@@ -15,12 +15,22 @@
         selector: '.cp-appraisal-btn',
     };
 </script>
-<script src="appraisal-form.js"></script>
+<script type="text/javascript">
+    (function (){
+        var scriptUrl = 'appraisal-form.js?v='+ (new Date()).getTime();
+
+        // Load the script with the generated version number
+        var scriptTag = document.createElement('script');
+        scriptTag.type = 'text/javascript';
+        scriptTag.src = scriptUrl;
+        document.head.appendChild(scriptTag);
+    })();
+</script>
 <!-- plugin code ends -->
 
 <!-- self open the modal test purpose if ?open=1-->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('carprazeAppraisalForm:loaded', function () {
         // self open the modal
         // if querystring?open=1
         if (window.location.search.indexOf('open=1') > -1) {
