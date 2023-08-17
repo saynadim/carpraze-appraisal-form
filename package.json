@@ -1,6 +1,6 @@
 {
   "name": "carpraze-appraisal-form",
-  "version": "1.7",
+  "version": "1.8.0",
   "description": "carpraze-appraisal-form",
   "main": "appraisal-form.js",
   "scripts": {
@@ -10,7 +10,6 @@
     "release": "standard-version",
     "commit": "cz",
     "prepare": "husky install"
-
   },
   "repository": {
     "type": "git",
