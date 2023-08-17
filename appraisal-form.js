@@ -142,6 +142,25 @@ var carpraze_contact_form = (function () {
         vertical-align: middle;
         height: 40px;
     }
+    /* Set max height and make modal body scrollable */
+    .cp-modal-content {
+        max-height: 80vh; /* Adjust this value as needed */
+        overflow-y: auto;
+    }
+
+    /* Additional styling for scrollable modal body */
+    .cp-modal-body {
+        max-height: calc(80vh - 120px); /* Adjust this value based on your header and footer heights */
+        overflow: auto;
+    }
+
+    @media (max-width: 768px) {
+        /* Adjust the width and padding for mobile devices */
+        .cp-modal-content {
+            width: 90%;
+            padding: 1rem;
+        }
+    }
     `;
         // Define the HTML for the form
         var html = `
