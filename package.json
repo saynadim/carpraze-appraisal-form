@@ -2,7 +2,7 @@
   "name": "carpraze-appraisal-form",
   "version": "1.7",
   "description": "carpraze-appraisal-form",
-  "main": "appraisal-form.js",
+  "main": "src/appraisal-form.js",
   "scripts": {
     "start": "serve .",
     "test": "playwright test",
