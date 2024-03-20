@@ -1,7 +1,7 @@
 const {test, expect} = require('@playwright/test');
 
 test('should open modal on click', async ({page }) => {
-    await page.goto('http://127.0.0.1:3000/example.html'); // replace with your website URL
+    await page.goto('http://127.0.0.1:3000/examples/example.html'); // replace with your website URL
 
     await page.click('.cp-appraisal-btn');
     const modal = await page.$('#cp-appraisal-modal.cp-show-modal');
@@ -9,7 +9,7 @@ test('should open modal on click', async ({page }) => {
 });
 
 test('should close modal on close button click', async ({page }) => {
-    await page.goto('http://127.0.0.1:3000/example.html'); // replace with your website URL
+    await page.goto('http://127.0.0.1:3000/examples/example.html'); // replace with your website URL
 
     await page.click('.cp-appraisal-btn');
     await page.click('.cp-close-button');
@@ -18,7 +18,7 @@ test('should close modal on close button click', async ({page }) => {
 });
 
 test('should submit form and display success message', async ({page }) => {
-    await page.goto('http://127.0.0.1:3000/example.html'); // replace with your website URL
+    await page.goto('http://127.0.0.1:3000/examples/example.html'); // replace with your website URL
 
     await page.click('.cp-appraisal-btn');
     await page.fill('#cp_first_name', 'Test');
@@ -28,7 +28,7 @@ test('should submit form and display success message', async ({page }) => {
     await page.click('#cp-appraisal-form input[type=submit]');
 
     // You may need to adjust this wait time
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
 
     const successMessage = await page.$('div.cp-success-message');
     expect(successMessage).toBeTruthy();
