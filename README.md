@@ -13,3 +13,25 @@ place the following code in your html file
 <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/saynadim/carpraze-appraisal-form@1.7/appraisal-form.js"> </script>-->
 
 ```
+
+
+## Development
+
+### setup
+open `localhost:3000/examples/example` after preparing
+```bash
+yarn install
+yarn serve
+```
+
+### test
+```bash
+# run all tests in all browsers
+yarn test
+
+# run all tests in a browser
+yarn test:chromium
+
+# run single test case
+yarn test:chromium -g "testcase name"
+```
