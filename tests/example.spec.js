@@ -33,3 +33,19 @@ test('should submit form and display success message', async ({page }) => {
     const successMessage = await page.$('div.cp-success-message');
     expect(successMessage).toBeTruthy();
 });
+
+test('should throw exception on invalid configuration', async ({ page }) => {
+    // Listen for page errors
+    let errorMessage = '';
+    page.on('pageerror', error => {
+        errorMessage = error.message;
+    });
+
+    await page.goto('http://127.0.0.1:3000/examples/example-error.html'); // replace with your website URL
+    // Wait for a short period to ensure the page has loaded and the error has occurred
+    // This might need adjustment based on the page's load time
+    await page.waitForTimeout(1000);
+
+    // Assert the error message
+    expect(errorMessage).toContain("carprazeForm:token meta is required");
+})
