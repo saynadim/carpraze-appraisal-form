@@ -1,6 +1,6 @@
 {
   "name": "carpraze-appraisal-form",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "carpraze-appraisal-form",
   "main": "src/appraisal-form.js",
   "scripts": {

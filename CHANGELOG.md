@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/saynadim/carpraze-appraisal-form/compare/v1.8.0...v1.10.0) (2024-03-21)
+
+
+### Features
+
+* add formType configuration ([432f3e8](https://github.com/saynadim/carpraze-appraisal-form/commit/432f3e8a5051ec960db3dee10e102827eaf117be))
+* added ss3 example and updated readme ([4dbbe96](https://github.com/saynadim/carpraze-appraisal-form/commit/4dbbe96030fa9273f8cd1dc84862923775d3a7ea))
+
 ## 1.8.0 (2023-08-17)
 
 ### Features
@@ -17,4 +25,3 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 * load everything on dom content loaded ([bc6d848](https://github.com/saynadim/carpraze-appraisal-form/commit/bc6d84803f58b472b7d9a7b4e8f31ea1b50aee05))
-
