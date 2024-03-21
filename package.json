@@ -1,13 +1,16 @@
 {
   "name": "carpraze-appraisal-form",
-  "version": "1.7",
+  "version": "1.9.0",
   "description": "carpraze-appraisal-form",
   "main": "src/appraisal-form.js",
   "scripts": {
     "start": "serve .",
     "test": "playwright test",
     "test:debug": "playwright test",
-    "test:chromium": "playwright test --project='chromium'"
+    "test:chromium": "playwright test --project='chromium'",
+    "release": "standard-version",
+    "commit": "cz",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,12 @@
   },
   "homepage": "https://github.com/saynadim/carpraze-appraisal-form#readme",
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@playwright/test": "^1.35.1",
-    "serve": "^14.2.0"
+    "commitizen": "^4.3.0",
+    "husky": "^8.0.3",
+    "serve": "^14.2.0",
+    "standard-version": "^9.5.0"
   }
 }
