@@ -1,28 +1,27 @@
-// version: 1.7
-// last updated: 29/07/2023
-var carpraze_contact_form = (function () {
-    function initContactForm() {
-        var carprazeForm = window.carprazeForm
-        if (!carprazeForm) {
-            const tokenMeta = document.querySelector('meta[name="carprazeForm:token"]');
-            const selectorMeta = document.querySelector('meta[name="carprazeForm:selector"]');
-            if (!tokenMeta) {
-                throw new Error('carprazeForm:token meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
-            } else if (!selectorMeta) {
-                throw new Error('carprazeForm:selector meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
-            }
-            carprazeForm = {
-                token: tokenMeta.getAttribute('content'),
-                selector: selectorMeta.getAttribute('content')
-            };
-        } else {
-            if (!carprazeForm.token) {
-                throw new Error('carprazeForm.token is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
-            } else if (!carprazeForm.selector) {
-                throw new Error('carprazeForm.selector is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
-            }
-        }
+// version: 1.9
+// last updated: 21/03/2023
+(function () {
+    function getConfigFromMeta() {
+        const tokenMeta = document.querySelector('meta[name="carprazeForm:token"]');
+        const selectorMeta = document.querySelector('meta[name="carprazeForm:selector"]');
 
+        return {
+            token: tokenMeta && tokenMeta.getAttribute('content'),
+            selector: selectorMeta && selectorMeta.getAttribute('content')
+        };
+    }
+
+    function throwErrorIfConfigurationNotFound(carprazeForm) {
+        if (!carprazeForm.token) {
+            throw new Error('carprazeForm:token meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
+        } else if (!carprazeForm.selector) {
+            throw new Error('carprazeForm:selector meta is required. Please check the documentation. https://github.com/saynadim/carpraze-appraisal-form');
+        }
+    }
+
+    function initContactForm() {
+        var carprazeForm = window.carprazeForm || getConfigFromMeta();
+        throwErrorIfConfigurationNotFound(carprazeForm);
 
         var token = carprazeForm.token;
         var selector = carprazeForm.selector;

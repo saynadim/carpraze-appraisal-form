@@ -6,7 +6,8 @@
   "scripts": {
     "start": "serve .",
     "test": "playwright test",
-    "test:debug": "playwright test"
+    "test:debug": "playwright test",
+    "test:chromium": "playwright test --project='chromium'"
   },
   "repository": {
     "type": "git",
