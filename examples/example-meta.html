@@ -10,12 +10,14 @@
 <!-- plugin code here -->
 <meta name="carprazeForm:token" content="aa88dd5135899c05895f8a1c57dc9748">
 <meta name="carprazeForm:selector" content=".cp-appraisal-btn">
-<script src="../src/appraisal-form.js"></script>
+<script>
+    (function(){var s=document.createElement('script');s.type='text/javascript';s.src='../src/appraisal-form.js?v='+(new Date).toISOString().slice(0,13).replace(/[-T:]/g,'');document.head.appendChild(s);})();
+</script>
 <!-- plugin code ends -->
 
-<!-- self open the modal test purpose -->
+<!-- self open the modal test purpose if ?open=1-->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('carprazeAppraisalForm:loaded', function () {
         // self open the modal
         // if querystring?open=1
         if (window.location.search.indexOf('open=1') > -1) {
