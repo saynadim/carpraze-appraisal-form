@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * add formType configuration ([432f3e8](https://github.com/saynadim/carpraze-appraisal-form/commit/432f3e8a5051ec960db3dee10e102827eaf117be))
-* added ss3 example and updated readme ([4dbbe96](https://github.com/saynadim/carpraze-appraisal-form/commit/4dbbe96030fa9273f8cd1dc84862923775d3a7ea))
+* added s3 example, refactored codebase, updated testcases and readme ([4dbbe96](https://github.com/saynadim/carpraze-appraisal-form/commit/4dbbe96030fa9273f8cd1dc84862923775d3a7ea))
 
 ## 1.8.0 (2023-08-17)
 
